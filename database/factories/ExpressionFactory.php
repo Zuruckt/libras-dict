@@ -25,7 +25,7 @@ class ExpressionFactory extends Factory
     {
         return [
             'text' => $this->faker->unique()->word(),
-            'gif_path' => str_replace(['storage/app/', '\\'], [''], $this->faker->unique()->image('storage/app/public/gifs/', 640, 480)), //Placeholder images, faker can't do actual gifs
+            'gif_path' => str_replace('storage/app/public/', 'storage/', $this->faker->unique()->image('storage/app/public/gifs/', 640, 480)), //Placeholder images, faker can't do actual gifs
             'user_id' => User::factory()
         ];
     }

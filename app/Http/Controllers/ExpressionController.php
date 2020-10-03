@@ -7,7 +7,6 @@ use App\Http\Requests\StoreExpression;
 use App\Http\Requests\UpdateExpression;
 use App\Models\Expression;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 
 class ExpressionController extends Controller
 {   
@@ -47,10 +46,10 @@ class ExpressionController extends Controller
         $request->validate($request->rules());
         
         $data = array_merge(
-            $request->except('tags'),
+            $request->except(['file']),
             [
                 'user_id' => auth()->id(),
-                'gif_path' => $this->helper->store($request->file, 'public')
+                'gif_path' => str_replace('public/', 'storage/', $this->helper->store($request->file, 'public/gifs'))
             ]
         );
 
@@ -60,7 +59,7 @@ class ExpressionController extends Controller
             abort(500, 'Não foi possível salvar a expressão.');
         }
 
-        if (!$expression->tags()->sync($request->tags)) {
+        if (!$expression->tags()->sync($data['tags'])) {
             abort(500, 'Não foi possível sincronizar as Tags.');
         }
 
