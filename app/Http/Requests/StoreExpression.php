@@ -24,7 +24,9 @@ class StoreExpression extends FormRequest
     public function rules()
     {
         return [
-            //
+            'text' => ['required', 'unique:expressions,text', 'string', 'max:255'],
+            'file' => ['required', 'file', 'mimes:gif'],
+            'tags' => ['nullable', 'exists:tags,id'],
         ];
     }
 }

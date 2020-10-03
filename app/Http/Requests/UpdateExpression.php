@@ -24,7 +24,10 @@ class UpdateExpression extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id' => ['sometimes', 'required', 'integer'],
+			'text' => ['sometimes', 'required', 'unique:expressions,text', 'string', 'max:255'],
+			'file' => ['sometimes', 'required', 'file', 'mimes:gif'],
+			'tags' => ['nullable', 'exists:tags,id'],
         ];
     }
 }
