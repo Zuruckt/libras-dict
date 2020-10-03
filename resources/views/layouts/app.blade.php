@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/46467ef33d.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <div id="app">
