@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExpressionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,13 @@ Route::get('/', function () {
 });
 
 Route::view('home', 'home')->middleware('auth');
+Route::group(['prefix' => 'expression', 'middleware' => 'auth'], function () {
+    Route::get('/create', [ExpressionController::class, 'create']);
+    Route::delete('/{id}', [ExpressionController::class, 'delete']);
+    Route::get('/{id}/edit', [ExpressionController::class, 'edit']);
+    Route::get('/', [ExpressionController::class, 'index']);
+    Route::post('/store', [ExpressionController::class, 'store']);
+    Route::get('/{id}', [ExpressionController::class, 'show']);
+    Route::put('/{id}', [ExpressionController::class, 'update']);
+});
+
