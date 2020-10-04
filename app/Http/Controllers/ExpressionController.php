@@ -18,7 +18,7 @@ class ExpressionController extends Controller
     }
     public function create()
     {
-        return view('expressions.create', [
+        return view('admin.expressions.create', [
             'tags' => Tag::all(),
         ]);
     }
@@ -28,17 +28,25 @@ class ExpressionController extends Controller
     }
     public function edit(Expression $expression)
     {
-        return view('expressions.create', [
+        return view('admin.expressions.edit', [
             'expression' => $expression,
             'tags' => Tag::all(),
         ]);
     }
 
-    public function index() {
-        return view('expressions.all', [
+    public function index($table = false) {
+        
+        $data = [
             'expressions' => Expression::all(),
             'tags' => Tag::all()
-        ]);
+        ];
+
+        if ($table) {
+            dd('sim');
+            return view ('admin.expressions.table', $data);
+        }
+
+        return view('admin.expressions.all', $data);
     }
 
     public function store(StoreExpression $request)
@@ -63,12 +71,12 @@ class ExpressionController extends Controller
             abort(500, 'Não foi possível sincronizar as Tags.');
         }
 
-        return redirect('/expression')->with('expression_created', 'Expressão registrada com sucesso');
+        return redirect()->route('admin.expressions.index')->with('expression_created', 'Expressão registrada com sucesso');
     }
 
     public function show(Expression $expression)
     {
-        return view('expression.single', [
+        return view('admin.expressions.single', [
             'expression' => $expression
         ]);
     }
