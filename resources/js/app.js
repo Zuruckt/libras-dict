@@ -1,8 +1,10 @@
 require('./bootstrap');
 
 import $ from 'jquery';
+require('jquery-easing');
 require('popper.js');
 require('bootstrap');
+require('./sb-admin-2.js');
 
 //Enable popper.js / bootstrap tooltips
 window.addEventListener('load', function() {

@@ -37,6 +37,7 @@
                     </div>
                 </div>
                 <div class="text-gray-500" style="margin-top: 3rem;">
+                    <!-- TODO: Condional redirect to / or /home depending on Auth state -->
                     <a href="/home"> Voltar ao Início<a>
                 </div>
             </div>
