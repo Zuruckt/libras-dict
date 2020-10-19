@@ -15,7 +15,7 @@
                         <label for="text">Texto</label>
                         <input name="text" type="text" class="form-control">
 
-                        @error('tags')
+                        @error('text')
                         <p class="help is-danger">{{$message}}</p>
                         @enderror
                     </div>
@@ -39,6 +39,10 @@
                         <label for="file">Arquivo</label>
                         <input name="file" type="file" class="form-control-file" accept="image/gif">
                     </div>
+                    
+                    @error('file')
+                        <p class="help is-danger">{{$message}}</p>
+                        @enderror
 
                     <button type="submit" class="btn btn-info">Enviar</button>
                 </form>

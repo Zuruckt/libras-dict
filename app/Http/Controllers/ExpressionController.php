@@ -37,7 +37,7 @@ class ExpressionController extends Controller
     public function index($table = false) {
         
         $data = [
-            'expressions' => Expression::all(),
+            'expressions' => Expression::paginate(8),
             'tags' => Tag::all()
         ];
 
@@ -82,6 +82,6 @@ class ExpressionController extends Controller
     }
 
     public function update(UpdateExpression $request) {
-        //todo
+        dd($request);
     }
 }
